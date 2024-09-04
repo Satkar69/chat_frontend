@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const LoginForm = () => {
   return (
     <>
@@ -28,12 +30,12 @@ const LoginForm = () => {
                 className="w-full input input-bordered h-10"
               />
             </div>
-            <a
-              href=""
+            <Link
+              href="/signup"
               className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
             >
               Don't have an account?
-            </a>
+            </Link>
             <div>
               <button className="btn btn-block btn-sm mt-2">Login</button>
             </div>
