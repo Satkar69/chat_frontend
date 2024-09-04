@@ -1,11 +1,9 @@
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./dashboard/page";
 
 export default function Home() {
   return (
     <>
-      <div className="p-4 h-screen flex items-center justify-center">
-        <Dashboard />
-      </div>
+      <Dashboard />
     </>
   );
 }

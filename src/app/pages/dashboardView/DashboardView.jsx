@@ -1,7 +1,7 @@
 import Sidebar from "@/app/components/sidebar/Sidebar";
 import MessageContainer from "@/app/components/messages/MessageContainer";
 
-const Dashboard = () => {
+const DashboardView = () => {
   return (
     <>
       <div className="flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
@@ -12,9 +12,9 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardView;
 
-// const Dashboard = () => {
+// const DashboardView = () => {
 //   return (
 //     <>
 //       <div className="flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
@@ -25,4 +25,4 @@ export default Dashboard;
 //   );
 // };
 
-// export default Dashboard;
+// export default DashboardView;
