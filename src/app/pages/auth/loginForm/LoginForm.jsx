@@ -1,6 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 const LoginForm = () => {
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
   return (
     <>
       <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -18,6 +25,10 @@ const LoginForm = () => {
                 type="text"
                 placeholder="enter username"
                 className="w-full input input-bordered h-10"
+                value={inputs.username}
+                onChange={(e) =>
+                  setInputs({ ...inputs, username: e.target.value })
+                }
               />
             </div>
             <div>
@@ -28,6 +39,10 @@ const LoginForm = () => {
                 type="text"
                 placeholder="enter password"
                 className="w-full input input-bordered h-10"
+                value={inputs.password}
+                onChange={(e) =>
+                  setInputs({ ...inputs, password: e.target.value })
+                }
               />
             </div>
             <Link

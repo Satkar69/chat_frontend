@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import GenderCheckBox from "./GenderCheckBox";
-import { useState, useffect } from "react";
+import { useState } from "react";
 import useSignUp from "../../../../hooks/useSignUp";
 
 const SignUpForm = () => {
@@ -100,7 +100,13 @@ const SignUpForm = () => {
               Already have an account?
             </Link>
             <div>
-              <button className="btn btn-block btn-sm mt-2">Sign Up</button>
+              <button className="btn btn-block btn-sm mt-2">
+                {loading ? (
+                  <span className="loading loading-spinner"></span>
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
             </div>
           </form>
         </div>

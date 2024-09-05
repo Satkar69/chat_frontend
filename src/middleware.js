@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const userData = request.cookies.get("chat-user")?.value;
+  const token = request.cookies.get("token")?.value;
   const requestUrl = request.nextUrl.pathname;
 
   // Define protected routes
@@ -18,18 +18,18 @@ export function middleware(request) {
     requestUrl.startsWith(route)
   );
 
-  // If it's a public route, and the user has userData, redirect to "/"
-  if (isPublicRoute && userData && requestUrl !== "/") {
+  // If it's a public route, and the user has token, redirect to "/"
+  if (isPublicRoute && token && requestUrl !== "/") {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
   // Allow unauthenticated users to access public routes like "/login" or "/signup"
-  if (isPublicRoute && !userData) {
+  if (isPublicRoute && !token) {
     return NextResponse.next();
   }
 
-  // If it's a protected route and user has no userData, redirect to loginin
-  if (isProtectedRoute && !userData && requestUrl !== "/login") {
+  // If it's a protected route and user has no token, redirect to loginin
+  if (isProtectedRoute && !token && requestUrl !== "/login") {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

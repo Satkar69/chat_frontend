@@ -11,7 +11,7 @@ const useLogout = () => {
   const router = useRouter();
   const logout = () => {
     setLoading(true);
-    Cookies.remove("chat-user");
+    Cookies.remove("token");
     setAuthUser(null);
     setLoading(false);
     router.refresh();

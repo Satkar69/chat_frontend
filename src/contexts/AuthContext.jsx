@@ -1,23 +1,28 @@
 "use client";
 
-import { createContext, useState, useEffect, useContext } from "react";
-import Cookies from "js-cookie";
+import { createContext, useState, useContext } from "react";
+import { jwtDecode } from "jwt-decode";
+import { getUser } from "@/services/userService";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
 
-  useEffect(() => {
-    // Check for user data in localStorage after component mounts
-    const storedUser = Cookies.get("chat-user");
-    if (storedUser) {
-      setAuthUser(JSON.parse(storedUser));
+  const updateUser = async (token) => {
+    if (token) {
+      try {
+        const decode = jwtDecode(token);
+        const user = await getUser(decode.userId, token);
+        setAuthUser(user);
+      } catch (error) {
+        throw Error(error || "authentication token is missing");
+      }
     }
-  }, []);
+  };
 
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

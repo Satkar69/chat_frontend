@@ -3,50 +3,21 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import { signupUser } from "@/services/authService";
 import Cookies from "js-cookie";
 
 const useSignUp = () => {
   const [loading, setLoading] = useState(false);
-  const { setAuthUser } = useAuthContext();
+  const { updateUser } = useAuthContext();
   const router = useRouter();
-  const signup = async ({
-    fullname,
-    username,
-    password,
-    confirmPassword,
-    gender,
-  }) => {
-    const success = handleInputErrors({
-      fullname,
-      username,
-      password,
-      confirmPassword,
-      gender,
-    });
+  const signup = async (formData) => {
+    const success = handleInputErrors(formData);
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullname,
-          username,
-          password,
-          confirmPassword,
-          gender,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.error) {
-        throw new Error(data.error);
-      }
-
-      Cookies.set("chat-user", JSON.stringify(data), { expires: 30 });
-      setAuthUser(data);
-
+      const token = await signupUser(formData);
+      Cookies.set("token", JSON.stringify(token), { expires: 30 });
+      updateUser(token);
       router.push("/");
     } catch (error) {
       toast.error(error.message);
