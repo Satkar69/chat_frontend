@@ -94,7 +94,7 @@ const SignUpForm = () => {
               selectedGender={inputs.gender}
             />
             <Link
-              href="/login"
+              href="/"
               className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
             >
               Already have an account?

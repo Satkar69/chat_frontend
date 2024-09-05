@@ -42,7 +42,7 @@ const useSignUp = () => {
       }
       Cookies.set("chat-user", JSON.stringify(data), { expires: 30 });
       setAuthUser(data);
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       toast.error(error.message);
     } finally {

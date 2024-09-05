@@ -5,24 +5,31 @@ export function middleware(request) {
   const requestUrl = request.nextUrl.pathname;
 
   // Define protected routes
-  const protectedRoutes = ["/dashboard"];
-  const publicRoutes = ["/login", "signup"];
+  const protectedRoutes = ["/", "/dashboard"];
+  const publicRoutes = ["/login", "/signup"];
 
   // Check if the requested URL matches any of the protected routes
   const isProtectedRoute = protectedRoutes.some((route) =>
     requestUrl.startsWith(route)
   );
 
+  // If it's a public route and userData exists, redirect to "/"
   const isPublicRoute = publicRoutes.some((route) =>
-    request.url.startsWith(route)
+    requestUrl.startsWith(route)
   );
 
-  if (isPublicRoute && userData) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+  // If it's a protected route, and the user has no userData, redirect to "/login"
+  if (isPublicRoute && userData && requestUrl !== "/") {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Allow unauthenticated users to access public routes like "/login" or "/signup"
+  if (isPublicRoute && !userData) {
+    return NextResponse.next();
   }
 
   // If it's a protected route and user has no userData, redirect to loginin
-  if (isProtectedRoute && !userData) {
+  if (isProtectedRoute && !userData && requestUrl !== "/login") {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -31,5 +38,5 @@ export function middleware(request) {
 
 // Matcher to apply the middleware to specific routes
 export const config = {
-  matcher: ["/login", "/signup", "/dashboard"],
+  matcher: ["/", "/login", "/signup", "/dashboard"],
 };
