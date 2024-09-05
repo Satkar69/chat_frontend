@@ -16,8 +16,8 @@ const useSignUp = () => {
     setLoading(true);
     try {
       const token = await signupUser(formData);
-      Cookies.set("token", JSON.stringify(token), { expires: 30 });
-      updateUser(token);
+      Cookies.set("token", token, { expires: 30 });
+      updateUser();
       router.push("/");
     } catch (error) {
       toast.error(error.message);
