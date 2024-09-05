@@ -15,8 +15,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthContextProvider>
+          <Toaster />
           <div className="p-4 h-screen flex items-center justify-center">
-            <Toaster />
             {children}
           </div>
         </AuthContextProvider>
