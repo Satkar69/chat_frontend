@@ -13,12 +13,12 @@ export function middleware(request) {
     requestUrl.startsWith(route)
   );
 
-  // If it's a public route and userData exists, redirect to "/"
+  // Check if the requested URL matches any of the public routes
   const isPublicRoute = publicRoutes.some((route) =>
     requestUrl.startsWith(route)
   );
 
-  // If it's a protected route, and the user has no userData, redirect to "/login"
+  // If it's a public route, and the user has userData, redirect to "/"
   if (isPublicRoute && userData && requestUrl !== "/") {
     return NextResponse.redirect(new URL("/", request.url));
   }
