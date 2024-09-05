@@ -3,7 +3,7 @@
 import Link from "next/link";
 import GenderCheckBox from "./GenderCheckBox";
 import { useState } from "react";
-import useSignUp from "../../../../hooks/useSignUp";
+import useSignUp from "@/hooks/useSignUp";
 
 const SignUpForm = () => {
   const [inputs, setInputs] = useState({
