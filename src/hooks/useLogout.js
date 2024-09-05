@@ -9,7 +9,7 @@ const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
   const router = useRouter();
-  const logout = async () => {
+  const logout = () => {
     setLoading(true);
     Cookies.remove("chat-user");
     setAuthUser(null);
