@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 const useSignUp = () => {
   const [loading, setLoading] = useState(false);
-  const { authUser, setAuthUser } = useAuthContext();
+  const { setAuthUser } = useAuthContext();
   const router = useRouter();
   const signup = async ({
     fullname,
@@ -24,6 +24,7 @@ const useSignUp = () => {
       gender,
     });
     if (!success) return;
+    setLoading(true);
     try {
       const res = await fetch("http://localhost:5000/api/auth/signup", {
         method: "POST",
@@ -36,12 +37,16 @@ const useSignUp = () => {
           gender,
         }),
       });
+
       const data = await res.json();
+
       if (data.error) {
         throw new Error(data.error);
       }
+
       Cookies.set("chat-user", JSON.stringify(data), { expires: 30 });
       setAuthUser(data);
+
       router.push("/");
     } catch (error) {
       toast.error(error.message);
