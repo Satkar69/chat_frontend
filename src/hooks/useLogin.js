@@ -33,6 +33,7 @@ const handleInputErrors = ({ username, password }) => {
     toast.error("please fill in all the fields");
     return false;
   }
+  toast.success("Logged In successfully!!");
   return true;
 };
 
