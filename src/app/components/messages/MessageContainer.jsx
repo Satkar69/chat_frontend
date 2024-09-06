@@ -1,4 +1,4 @@
-import Messages from "./Message";
+import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { TiMessages } from "react-icons/ti";
 import useConversation from "@/lib/zustand/useConversation";
