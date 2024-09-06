@@ -16,3 +16,17 @@ export const sendMessageToChatUser = async (recieverId, message, token) => {
   }
   return data.newMessage;
 };
+
+export const getChatUserMessages = async (userToChatId, token) => {
+  const res = await fetch(`${endpoints.getMessages}${userToChatId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message);
+  }
+  return data.messages;
+};

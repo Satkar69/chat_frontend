@@ -6,4 +6,5 @@ export const endpoints = {
   getUser: `${apiUrl}/chatUsers/user/`,
   getChatUsers: `${apiUrl}/chatUsers`,
   sendMessage: `${apiUrl}/messages/send-message/`,
+  getMessages: `${apiUrl}/messages/get-messages/`,
 };

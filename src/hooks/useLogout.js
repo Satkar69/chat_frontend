@@ -12,8 +12,9 @@ const useLogout = () => {
     setLoading(true);
     Cookies.remove("token");
     setAuthUser(null);
+    localStorage.removeItem("authUser");
     setLoading(false);
-    router.refresh();
+    router.refresh("/");
   };
   return { loading, logout };
 };

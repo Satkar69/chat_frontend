@@ -12,12 +12,10 @@ export const AuthContextProvider = ({ children }) => {
 
   const updateUser = async () => {
     const token = Cookies.get("token");
-
+    const cachedUser = localStorage.getItem("authUser");
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        const cachedUser = localStorage.getItem("authUser");
-
         if (cachedUser) {
           const parsedUser = JSON.parse(cachedUser);
 
@@ -27,7 +25,6 @@ export const AuthContextProvider = ({ children }) => {
             return; // No need to refetch if user matches
           }
         }
-
         // If no cached user or mismatched user, fetch from the API
         const user = await getUser(decoded.userId, token);
         setAuthUser(user);
@@ -38,16 +35,17 @@ export const AuthContextProvider = ({ children }) => {
         console.error("Error updating user:", error);
       }
     } else {
-      localStorage.removeItem("authUser");
-      setAuthUser(null);
-      throw new Error("Error updating user:", error);
+      if (cachedUser) {
+        localStorage.removeItem("authUser");
+        setAuthUser(null);
+        throw new Error("Error updating user:", error);
+      }
     }
   };
 
   useEffect(() => {
     if (!authUser) {
       const cachedUser = localStorage.getItem("authUser");
-
       if (cachedUser) {
         // Try to use the cached user first
         setAuthUser(JSON.parse(cachedUser));
