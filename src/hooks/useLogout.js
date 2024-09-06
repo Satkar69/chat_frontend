@@ -13,7 +13,7 @@ const useLogout = () => {
     Cookies.remove("token");
     setAuthUser(null);
     setLoading(false);
-    router.refresh();
+    router.refresh("/");
   };
   return { loading, logout };
 };
