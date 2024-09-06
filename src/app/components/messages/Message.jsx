@@ -1,6 +1,7 @@
 import { useAuthContext } from "@/contexts/AuthContext";
 import useConversation from "@/lib/zustand/useConversation";
 import { extractTime } from "@/utils/extractTime";
+import { useSocketContext } from "@/contexts/SocketContext";
 
 const Message = ({ message }) => {
   const { authUser } = useAuthContext();
@@ -12,10 +13,16 @@ const Message = ({ message }) => {
     : selectedConversation?.profilePic;
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
   const formattedTime = extractTime(message.createdAt);
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(message.senderId);
 
   return (
     <div className={`chat ${chatClassName}`}>
-      <div className="chat-image avatar">
+      <div
+        className={`chat-image avatar ${
+          isOnline && message.senderId !== authUser?._id ? "online" : ""
+        }`}
+      >
         <div className="w-10 rounded-full">
           <img src={profilePic} alt="chat user image" />
         </div>
