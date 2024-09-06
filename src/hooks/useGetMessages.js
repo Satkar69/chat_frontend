@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { getChatUserMessages } from "@/services/messageService";
-import useConversation from "@/libs/zustand/useConversation";
+import useConversation from "@/lib/zustand/useConversation";
 import Cookies from "js-cookie";
 
 const useGetMessages = () => {

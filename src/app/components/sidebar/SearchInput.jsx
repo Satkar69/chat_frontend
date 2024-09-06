@@ -1,6 +1,6 @@
 "use client";
 import useGetConversations from "@/hooks/useGetConversations";
-import useConversation from "@/libs/zustand/useConversation";
+import useConversation from "@/lib/zustand/useConversation";
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { toast } from "react-hot-toast";
