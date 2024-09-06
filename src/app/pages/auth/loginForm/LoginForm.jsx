@@ -14,7 +14,6 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
     await login(inputs);
   };
 
@@ -46,7 +45,7 @@ const LoginForm = () => {
                 <span className="text-base label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="enter password"
                 className="w-full input input-bordered h-10"
                 value={inputs.password}

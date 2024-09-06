@@ -29,9 +29,9 @@ export const AuthContextProvider = ({ children }) => {
         }
 
         // If no cached user or mismatched user, fetch from the API
-        const userData = await getUser(decoded.userId, token);
-        setAuthUser(userData.user);
-        localStorage.setItem("authUser", JSON.stringify(userData.user));
+        const user = await getUser(decoded.userId, token);
+        setAuthUser(user);
+        localStorage.setItem("authUser", JSON.stringify(user));
       } catch (error) {
         setAuthUser(null);
         localStorage.removeItem("authUser");

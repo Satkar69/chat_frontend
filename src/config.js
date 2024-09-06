@@ -4,4 +4,5 @@ export const endpoints = {
   login: `${apiUrl}/auth/login`,
   signup: `${apiUrl}/auth/signup`,
   getUser: `${apiUrl}/chatUsers/user/`,
+  getChatUsers: `${apiUrl}/chatUsers`,
 };

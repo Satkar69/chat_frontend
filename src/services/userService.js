@@ -9,8 +9,24 @@ export const getUser = async (userId, token) => {
 
   const data = await res.json();
 
-  if (!res.ok || data.error) {
-    throw new Error(data.error || "faiiled to get the user");
+  if (!res.ok) {
+    throw new Error(data.message);
   }
-  return data;
+  return data.user;
+};
+
+export const chatUsers = async (token) => {
+  const res = await fetch(endpoints.getChatUsers, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message);
+  }
+
+  return data.chatUsers;
 };
