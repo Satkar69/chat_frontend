@@ -1,6 +1,6 @@
 "use client";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import useLogout from "../../../hooks/useLogout";
+import useLogout from "@/hooks/useLogout";
 
 const LogoutButton = () => {
   const { loading, logout } = useLogout();

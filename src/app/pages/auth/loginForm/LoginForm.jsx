@@ -2,12 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import useLogin from "@/hooks/useLogin";
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
   });
+
+  const { loading, login } = useLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(inputs);
+  };
+
   return (
     <>
       <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -16,7 +25,7 @@ const LoginForm = () => {
             Login
             <span className="text-blue-500"> ChatApp</span>
           </h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="" className="label p-2">
                 <span className="text-base label-text">Username</span>
@@ -36,7 +45,7 @@ const LoginForm = () => {
                 <span className="text-base label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="enter password"
                 className="w-full input input-bordered h-10"
                 value={inputs.password}
@@ -52,7 +61,13 @@ const LoginForm = () => {
               Don't have an account?
             </Link>
             <div>
-              <button className="btn btn-block btn-sm mt-2">Login</button>
+              <button type="submit" className="btn btn-block btn-sm mt-2">
+                {loading ? (
+                  <span className="loading loading-spinner"></span>
+                ) : (
+                  "Login"
+                )}
+              </button>
             </div>
           </form>
         </div>

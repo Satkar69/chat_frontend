@@ -48,6 +48,7 @@ const handleInputErrors = ({
     toast.error("Password must be at least 6 characters");
     return false;
   }
+  toast.success("Signup success!! logging in....");
   return true;
 };
 
