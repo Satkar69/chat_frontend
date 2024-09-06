@@ -1,8 +1,9 @@
-import useConversation from "@/app/zustand/useConversation";
+import useConversation from "@/libs/zustand/useConversation";
 
 const Conversation = ({ conversation, isLastIndex }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const isSelected = selectedConversation?._id === conversation._id;
+  console.log(selectedConversation);
   return (
     <>
       <div

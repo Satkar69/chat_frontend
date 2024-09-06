@@ -1,7 +1,7 @@
 import Messages from "./Message";
 import MessageInput from "./MessageInput";
 import { TiMessages } from "react-icons/ti";
-import useConversation from "@/app/zustand/useConversation";
+import useConversation from "@/libs/zustand/useConversation";
 
 const NoChatSelected = ({ user }) => {
   return (

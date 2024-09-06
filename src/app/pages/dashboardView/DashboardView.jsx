@@ -3,7 +3,7 @@
 import Sidebar from "@/app/components/sidebar/Sidebar";
 import MessageContainer from "@/app/components/messages/MessageContainer";
 import { useAuthContext } from "@/contexts/AuthContext";
-import useConversation from "@/app/zustand/useConversation";
+import useConversation from "@/libs/zustand/useConversation";
 import { useEffect } from "react";
 
 const DashboardView = () => {

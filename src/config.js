@@ -5,4 +5,5 @@ export const endpoints = {
   signup: `${apiUrl}/auth/signup`,
   getUser: `${apiUrl}/chatUsers/user/`,
   getChatUsers: `${apiUrl}/chatUsers`,
+  sendMessage: `${apiUrl}/messages/send-message/`,
 };

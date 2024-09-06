@@ -61,7 +61,7 @@ const LoginForm = () => {
               Don't have an account?
             </Link>
             <div>
-              <button className="btn btn-block btn-sm mt-2">
+              <button type="submit" className="btn btn-block btn-sm mt-2">
                 {loading ? (
                   <span className="loading loading-spinner"></span>
                 ) : (
