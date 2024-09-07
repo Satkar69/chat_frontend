@@ -1,4 +1,6 @@
-const apiUrl = "https://chat-backend-blue-tau.vercel.app";
+// process.env.API_LOCAL_URL for local
+
+const apiUrl = process.env.API_BASE_URL;
 
 export const endpoints = {
   login: `${apiUrl}/auth/login`,
