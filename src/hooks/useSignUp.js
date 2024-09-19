@@ -18,7 +18,7 @@ const useSignUp = () => {
       const token = await signupUser(formData);
       Cookies.set("token", token, { expires: 30 });
       updateUser();
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       toast.error(error.message);
     } finally {
