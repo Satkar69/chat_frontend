@@ -16,7 +16,10 @@ const NoChatSelected = ({ user }) => {
               <span className="loading loading-spinner"></span>
             )}
           </p>
-          <p>Select a chat to start messaging</p>
+          <p>
+            Select a chat to start messaging or create more accounts to test it
+            yourself!!
+          </p>
           <TiMessages className="text-3xl md:text-6xl text-center" />
         </div>
       </div>
