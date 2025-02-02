@@ -1,6 +1,4 @@
-// process.env.API_LOCAL_URL for local
-
-const apiUrl = process.env.API_LOCAL_URL;
+const apiUrl = "http://localhost:5000/api";
 
 export const endpoints = {
   login: `${apiUrl}/auth/login`,
